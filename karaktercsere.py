@@ -1,0 +1,22 @@
+#!/usr/bin/env python
+#-*-coding:utf-8-*-
+
+def karakterCsere(ch, ca1, ca2, kezdo=0, vegso=None):
+	"a ch karakterláncban kicserél minden ca1 karaktert ca2 karakterre, a kezo-indextől a vegso-indexig."
+	if vegso==None:
+		vegso=len(ch)
+	lista = []
+	
+	while vegso > kezdo:
+		if ch[kezdo] == ca1:
+			lista.append(ca2)
+		else:
+			lista.append(ch[kezdo])
+		kezdo = kezdo + 1
+	return "".join(lista)
+
+cserelt = karakterCsere('kuntakinte betekinte', 'e', 'x', vegso=12)
+print cserelt
+
+
+

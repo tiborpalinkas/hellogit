@@ -1,0 +1,46 @@
+#!/usr/bin/env python
+#-*-coding:utf-8-*-
+
+from Tkinter import *
+import Pmw
+from random import randrange
+
+colors = ["ivory", "blue", "yellow", "red", "green", "grey", "pink"]
+Pmw.initialise()
+
+class MainWind(Pmw.ScrolledCanvas):
+	def __init__(self):
+		Pmw.ScrolledCanvas.__init__(self, usehullsize = 1, hull_width = 500, hull_height = 300,
+									canvas_bg = "ivory", labelpos = N, label_text = "Kapd el a gombot !")
+		self.configure(vscrollmode = "dynamic", hscrollmode = "dynamic")
+		self.pack(padx = 5, pady = 5, expand = YES, fill = BOTH)
+		self.can = self.interior()
+		for i in range(80):
+			x1, y1 = randrange(-300, 300), randrange(-300, 300)
+			x2, y2 = x1 + randrange(40, 150), y1 + randrange(40, 150)
+			color = colors[randrange(0,7)]
+			self.can.create_oval(x1, y1, x2, y2, fill = color, outline = "black")
+		self.bt = Button(self, text = "Start", command = self.start)
+		self.x, self.y = 50, 100
+		self.window = self.can.create_window(self.x, self.y, self.bt)
+		
+	def start(self):
+		self.run = 1
+		self.bt.configure(text = "Kapj el !", command = self.stop)
+		self.anim()
+		
+	def anim(self):
+		if self.run == 0:
+			return
+		self.x += randrange(-60, 61)
+		self.y += randrange(-60, 61)
+		self.can.coords(self.window, self.x, self.y)
+		self.resizescrollregion()
+		self.after(250, self.anim)
+		
+	def stop(self):
+		self.run = 0
+		self.bt.configure(text = "Restart", command = self.start)
+		
+if __name__ == "__main__":
+	MainWind().mainloop()		

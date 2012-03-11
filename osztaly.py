@@ -1,0 +1,36 @@
+#!/usr/bin/env python
+#-*-coding:utf-8-*-
+
+from math import sqrt
+
+def tavolsag(p, q):
+	"megállapítja két Pont() objektum távolságát"
+	if p.x > q.x:
+		a = p.x - q.x
+	elif q.x > p.x:
+		a = q.x - p.x
+	elif p.x == q.x:
+		a = 0
+	
+	if p.y > q.y:
+		b = p.y - q.y
+	elif q.y > p.y:
+		b = q.y - p.y
+	elif p.y == q.y:
+		b = 0
+		
+	c = sqrt(a**2 + b**2)
+	return c
+	
+class Pont:
+	"egy pont osztály"
+	
+p1 = Pont()
+p1.x = 5.0
+p1.y = 6.3
+
+p2 = Pont()
+p2.x = 5.0
+p2.y = 7.5
+
+print tavolsag(p1, p2)

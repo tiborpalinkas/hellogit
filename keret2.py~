@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+#-*-coding:utf-8-*-
+
+from Tkinter import *
+
+ablak = Tk()
+ablak.title("Keretekkel díszített ablak")
+ablak.geometry("300x300")
+
+f1 = Frame(ablak, bg = "cyan")
+f1.pack(side = LEFT, padx = 5, pady = 10)
+
+keretek = [0] * 6
+adatok = [(0, 'grey50', RAISED, 'Kiemelkedő felület'),
+			(1, 'grey60', SUNKEN, 'Süllyesztett felület'),
+			(2, 'grey70', FLAT, 'Sík felület'),
+			(3, 'grey80', RIDGE, 'Gerinc'),
+			(4, 'grey90', GROOVE, 'Árok'),
+			(5, 'grey100', SOLID, 'Szegély')]
+for (n, szin, keret, szoveg) in adatok:
+	keretek[n] = Frame(f1, relief = keret, bd = 2)
+	keretek[n].pack(side = TOP, padx = 5, pady = 5)
+	Label(keretek[n], bg = szin, text = szoveg, width = 15).pack()
+	
+f2 = Frame(ablak, bg = '#d0d0b0', relief = GROOVE)
+f2.pack(side = RIGHT, padx = 5)
+Canvas(f2, width = 80, height = 80, bg = 'white', bd = 2, relief = SOLID).pack(padx = 15, pady = 15)
+Button(f2, text = 'Gomb').pack()
+
+ablak.mainloop()

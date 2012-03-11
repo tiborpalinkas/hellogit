@@ -1,0 +1,18 @@
+#!/usr/bin/env python
+#-*-coding:utf-8-*-
+
+filename = raw_input("Adja meg a file nevét : ")
+try:
+	f = open(filename, "r")
+except:
+	print "A %s fájl nem létzik." % (filename)
+	quit(-1)
+betuk = {}	
+while 1:
+	txt = f.readline()
+	if txt == "":
+		break
+	for c in txt:
+		betuk[c] = betuk.get(c, 0) + 1
+		
+print betuk

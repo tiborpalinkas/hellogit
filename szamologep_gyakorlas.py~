@@ -1,0 +1,14 @@
+#!/usr/bin/env python
+#-*-coding:utf-8-*-
+
+from Tkinter import *
+from math import *
+
+ablak = Tk()
+mezo = Entry(ablak)
+mezo.bind("<Return>", kiertekel)
+mezo.pack()
+chain = Label(ablak)
+chain.pack()
+
+ablak.mainloop()

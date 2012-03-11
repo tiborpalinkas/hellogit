@@ -1,0 +1,53 @@
+#!/usr/bin/env python
+#-*-coding:utf-8-*-
+
+from Tkinter import *
+
+def kor(x, y, r, color = "black"):
+	"egy (x, y) középpontú, r sugarú és alapértelmezetten fekete kört rajzol"
+	vaszon.create_oval(x-r, y-r, x+r, y+r, outline = color)
+	
+def figure_1():
+	"két vonalból és koncentrikus körökből egy céltáblát rajzol"
+	# először törölni kell a vásznat :
+	vaszon.delete(ALL)
+	# a függőleges és a vízszintes vonal :
+	vaszon.create_line(100, 0, 100, 200, fill = "blue")
+	vaszon.create_line(0, 100, 200, 100, fill = "blue")
+	
+	sugar = 20
+	while sugar < 100:
+		kor(100, 100, sugar)
+		sugar += 15
+		
+def figure_2():
+	"körökből egy egyszerű arcot rajzol"
+	# először törölni kell a vásznat :
+	vaszon.delete(ALL)
+	# az arc elemei listában lévő listák :
+	cc = [[100, 100, 80, "red"],			# arc
+			[50, 120, 20, "purple"],
+			[150, 120, 20, "purple"],
+			[70, 70, 20, "blue"],			# szemek
+			[130, 70, 20, "blue"],
+			[70, 70, 5, "black"],
+			[130, 70, 5, "black"],			
+			[100, 100, 10, "red"],			# orr
+			[100, 140, 20, "red"]]			# száj
+	i = 0
+	while i < len(cc):
+		element = cc[i]
+		kor(element[0], element[1], element[2], element[3])
+		i += 1
+
+##### Főprogram #####
+
+ablak = Tk()
+vaszon = Canvas(ablak, width = "200", height = "200", bg = "ivory")
+vaszon.pack(side = TOP, padx = 5, pady = 5)
+gomb1 = Button(ablak, text = "1. ábra", command = figure_1)
+gomb1.pack(side = LEFT, padx = 3, pady = 3)
+gomb2 = Button(ablak, text = "2. ábra", command = figure_2)
+gomb2.pack(side = RIGHT, padx = 3, pady = 3)
+
+ablak.mainloop()

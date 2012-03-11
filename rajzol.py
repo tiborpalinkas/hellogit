@@ -1,0 +1,43 @@
+#!/usr/bin/env python
+#-*-coding:utf-8-*-
+
+from Tkinter import *
+from random import randrange
+
+# --- az eseménykezelő függnyek definíciója : ---
+def drawline():
+	"Vonal rajzolása a can1 vászonra"
+	global x1, y1, x2, y2, color
+	can1.create_line(x1, y1, x2, y2, width=2, fill=color)
+	
+	# a koordináták módosítása a következő egyenes számára :
+	y2, y1 = y2 + 10, y1 - 10
+	
+def changecolor():
+	"a rajz színének véletlenszerű megváltozatása"
+	global color
+	pal = ['purple', 'cyan', 'maroon', 'green', 'red', 'blue', 'orange', 'yellow']
+	c = randrange(8)
+	color = pal[c]
+	
+#------ Főprogram ------
+
+# a következő változókat globális változókként használjuk :
+x1, y1, x2, y2 = 10, 190, 190, 10
+color = 'dark green'
+
+# A fő-widget létrehozása ("master") :
+abl1 = Tk()
+
+can1 = Canvas(abl1, bg='dark grey', height=200, width=200)
+can1.pack(side=LEFT)
+gomb1 = Button(abl1, text='Kilép', command=abl1.quit)
+gomb1.pack(side=BOTTOM)
+gomb2 = Button(abl1, text='Vonalat rajzol', command=drawline)
+gomb2.pack()
+gomb3 = Button(abl1, text='Más szín', command=changecolor)
+gomb3.pack()
+
+abl1.mainloop()
+
+abl1.destroy()

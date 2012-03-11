@@ -1,0 +1,111 @@
+#!/usr/bin/env python
+#-*-coding:utf-8-*-
+from math import pi
+from turtle import *
+
+def karakterSor(n, ca):
+	"egy n darab, ca karakterekből álló stringet ad vissza."
+	return n * ca
+
+def korTerulet(R):
+	"visszaadja egy R sugarú kör területét."
+	return R**2*pi
+
+def dobozTerfogat(x1, x2, x3):
+	"visszaadja egy x1, x2, x3 argumentumú parelellepipedon térfogatát."
+	return x1 * x2 * x3
+
+def maximum(n1, n2, n3):
+	"az argumentumként megadott n1, n2, n3 számok közül a legnagyobbat\
+	adja vissza."
+	max = n1
+	if n2 > max:
+		max = n2
+	if n3 > max:
+		max = n3
+	return max
+
+def negyzet(meret, szin, szog):
+	"meghatározott méretű és színű négyzetet rajzoló függvény"
+	color(szin)
+	c = 0
+	while c < 4:
+		forward(meret)
+		right(szog)
+		c = c + 1
+
+def haromszog(meret, szin, szog):
+	"meghatározott méretű, színű, orientációjú egyenlő oldalú \
+	háromszöget rajzol."
+	color(szin)
+	c = 0
+	while c < 3:
+		forward(meret)
+		right(szog)
+		c = c + 1
+
+def csillag(meret, szin):
+	"egy ötágú csillagot rajzol."
+	color(szin)
+	i = 0
+	while i < 5:
+		forward(meret)
+		right(144)
+		i = i + 1
+
+def karakterSzam(ca, ch):
+	"visszaadja a ch stringben előforduló ca karakterek számát"
+	szam = 0
+	i = 0
+	for i in range(0, len(ch)):
+		if ch[i] == ca:
+			szam = szam + 1
+	return szam
+
+def indexMax(lista):
+	"az argumentumként megadott lista legnagyobb értékű elemének az indexét adja vissza"	
+	legn = lista[0]
+	index = 0
+	i = 1
+	for i in range(1, len(lista)):
+		if lista[i] > legn:
+			legn = lista[i]
+			index = i
+		i = i + 1
+	return index
+
+def honapNeve(n):
+	honapok = [None, 'Január', 'Február', 'Március', 'Április', 'Május', 'Június', 'Július', 'Augusztus',
+				'Szeptember', 'Október', 'November', 'December']
+	if n > 0 and n < 13:
+		return honapok[n]
+	else:
+		return "Hibás hónap (1-12-ig adja meg a hónap számát)" 
+
+def inverse(ch):
+	"megfordítja a ch argumentumban megadott karakterek sorrendjét"
+	lista = []
+	i = len(ch) - 1
+	while i > -1:
+		lista.append(ch[i])
+		i = i - 1
+	return "".join(lista)
+
+def szavakSzama(mon):
+	"visszaadja a mon mondatban található szavak számát"
+	szavak = mon.split()
+	return len(szavak)
+	
+#string = karakterSor(23, 'g')
+#print string
+#terulet = korTerulet(2.5)
+#print terulet
+#terfogat = dobozTerfogat(5.2, 7.7, 3.3)
+#print terfogat
+#legnagyobb = maximum(2, 5, 4)
+#print legnagyobb
+
+#szam = karakterSzam('e', 'Kuntakinte betekinte')
+#print szam
+szavak = szavakSzama("Kuntakinte betekinte mert jó lenne már")
+print szavak

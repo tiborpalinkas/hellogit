@@ -1,0 +1,47 @@
+#!/usr/bin/env python
+#-*-coding:utf-8-*-
+
+def fomenu():
+	"megjeleníti a főmenüt"
+	global c
+	print "Válasszon az alábbi műveletek közül: \n\n"
+	print "(U)j sorok rögzítése"
+	print "(M)egjeleníteni a fájl tartalmát"
+	print "(K)ilépés"
+	c = raw_input()
+	
+def uj_sorok():
+	"új sorok rögzítése a szövegállományban"
+	print "Kezdjen el gépelni a szövegállományban :"
+	fw = open(filename, "a")
+	sor = raw_input()
+	while sor != "":
+		fw.write(sor)
+		sor = raw_input()
+	fw.close()
+	
+def megjelenit():
+	"megjeleníti a szövegállomány tartalmát"
+	while 1:
+		txt = f.readline()
+		if txt == "":
+			break
+		print txt
+	
+filename = raw_input("Adja meg a file nevét : ")
+try:
+	f = open(filename, "r")
+except:
+	print "A fájl nem létezik."
+	exit(-1)
+	
+fomenu()
+while c != "K":
+	if c == "U":
+		uj_sorok()
+		fomenu()
+	elif c == "M":
+		megjelenit()
+		fomenu()
+print "A legközelebbi viszontlátásra!"
+f.close()
